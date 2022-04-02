@@ -29,6 +29,16 @@ void main() {
       expect(barBaz.matches("div[attr]"), false);
       expect(barBaz.matches("div[x='x']"), false);
     });
+    test('closest', () {
+      final rootElement = Element.html('<div id=foo>'
+          '<div class="x-1">'
+          '<div class="x-2"></div>'
+          '</div>'
+          '</div>');
+      final element = rootElement.querySelector(".x-2");
+      expect(element?.closest(".x-2"), element);
+      expect(element?.closest("#foo"), rootElement);
+    });
   });
 
   group('Document', () {

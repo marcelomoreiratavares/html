@@ -687,6 +687,14 @@ class Element extends Node with _ParentNode, _ElementAndDocument {
   bool matches(String selector) {
     return query.matches(this, selector);
   }
+
+  Element? closest(String selector) {
+    if (matches(selector)) {
+      return this;
+    }
+
+    return parent?.closest(selector);
+  }
 }
 
 class Comment extends Node {
