@@ -683,6 +683,10 @@ class Element extends Node with _ParentNode, _ElementAndDocument {
   ///     element.classes.toggle('isOnline');
   ///     element.classes.remove('selected');
   CssClassSet get classes => ElementCssClassSet(this);
+
+  bool matches(String selector) {
+    return query.matches(this, selector);
+  }
 }
 
 class Comment extends Node {

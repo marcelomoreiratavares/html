@@ -15,6 +15,20 @@ void main() {
       expect(barBaz.classes, ['bar', 'baz']);
       expect(quxBaz.classes, ['qux', 'baz']);
     });
+    test('matches', () {
+      final barBaz = Element.html('<div class=" bar baz" x="y"></div>');
+      expect(barBaz.matches("div"), true);
+      expect(barBaz.matches("div.bar"), true);
+      expect(barBaz.matches("div.bar.baz"), true);
+      expect(barBaz.matches("div[class]"), true);
+      expect(barBaz.matches("div[x='y']"), true);
+
+      expect(barBaz.matches("other"), false);
+      expect(barBaz.matches("div.x"), false);
+      expect(barBaz.matches("div.bar.x"), false);
+      expect(barBaz.matches("div[attr]"), false);
+      expect(barBaz.matches("div[x='x']"), false);
+    });
   });
 
   group('Document', () {
